@@ -1,6 +1,6 @@
 var fs = require("fs");
 var lineReader = require("line-reader");
-var mustache = require("mustache");
+//var mustache = require("mustache");
 
 // Will hold our "facts"
 var facts = [];
@@ -26,7 +26,7 @@ fs.watchFile("bullshit.txt",function(curr,prev) {
 });
 
 // TODO: Load template
-var template = "{{fact}}";
+//var template = "{{fact}}";
 
 var http = require('http');
 // Startup server
@@ -39,10 +39,10 @@ http.createServer(function (req, res) {
     var selectedFact = selectedArray[Math.floor(Math.random()*selectedArray.length)];
     
     // TODO: Create the view
-    var view = {fact: selectedFact};    
-    var html = mustache.to_html(template, view);
+    //var view = {fact: selectedFact};    
+    //var html = mustache.to_html(template, view);
 
-    res.end(html); // Write response
+    res.end(selectedFact); // Write response
 }).listen(8080);
 
 function getFactsFromFile(file){
