@@ -1,0 +1,10 @@
+AmazingButTrueFacts.com
+
+- A site that shows a single amazing but true fact every refresh
+
+--- Structure ----
+htdocs/				# single empty index.html
+htdocs/css 			# css files
+node/ 				# node goes here
+node/node_modules 		# custom node modules here
+
