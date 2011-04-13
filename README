@@ -8,5 +8,6 @@ htdocs/css 			# css files
 node/ 				# node goes here
 node/node_modules 		# custom node modules here
 
---- 3rd Party node modules ---
+--- 3rd Party node modules (npm installed) ---
 Mustache
+line-reader
