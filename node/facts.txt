@@ -1,0 +1,22 @@
+{"id":1,"show":true,"status":true,"fact":"A restaurant in Stockholm serves garlic cheesecake"}
+{"id":2,"show":true,"status":true,"fact":"On average, the Earth collects 40 tons of space dust each day"}
+{"id":3,"show":true,"status":true,"fact":"Malory Archer is Lucille Bluth"}
+{"id":4,"show":true,"status":true,"fact":"You're never more then 3ft from a spider"}
+{"id":5,"show":true,"status":true,"fact":"Platypuses sweat milk"}
+{"id":6,"show":true,"status":true,"fact":"111,111,111 x 111,111,111 = 12345678987654321"}
+{"id":7,"show":true,"status":true,"fact":"The spotted hyena (Crocuta crocuta) has the largest clitoris of any land mammal"}
+{"id":8,"show":true,"status":true,"fact":"Male rhesus monkeys often hang from tree branches by their penises"}
+{"id":9,"show":true,"status":true,"fact":"France hung a pig for the murder of a child"}
+{"id":10,"show":true,"status":true,"fact":"Elephants can't jump"}
+{"id":11,"show":true,"status":true,"fact":"Adolf Hitler was a vegitarian and didn't consume alcohol"}
+{"id":12,"show":true,"status":true,"fact":"Polar bears get most of their water from the chemical reaction that breaks down fat"}
+{"id":13,"show":true,"status":true,"fact":"The average lead pencil will draw a line 35 miles long"}
+{"id":14,"show":true,"status":true,"fact":"An ostrich's eye is larger than its brain"}
+{"id":15,"show":true,"status":true,"fact":"Polar bear fur is clear"}
+{"id":16,"show":true,"status":true,"fact":"If two pieces of uncoated metal touch in space, they become permanently stuck together"}
+{"id":17,"show":true,"status":true,"fact":"Death is certain"}
+{"id":18,"show":false,"status":false,"fact":"Bernadette Peters was born as a man"}
+{"id":19,"show":true,"status":false,"fact":"ISS crew inhales 3oz of dead skin cells each day"}
+{"id":20,"show":true,"status":false,"fact":"Gerbils can be born pregnant"}
+{"id":21,"show":true,"status":false,"fact":"Over 9000 years the length of a day gains 69 seconds"}
+{"id":22,"show":true,"status":true,"fact":"There are many colors in the homo rainbow"}
