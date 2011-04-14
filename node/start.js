@@ -1,6 +1,6 @@
 var fs = require("fs");
 var lineReader = require("line-reader");
-//var mustache = require("mustache");
+var mustache = require("mustache");
 
 // Will hold our "facts"
 var facts = [];
@@ -25,7 +25,24 @@ fs.watchFile("bullshit.txt",function(curr,prev) {
     }
 });
 
+var template = "";
 // TODO: Load template
+var loadTemplate = function() {
+    fs.readFile('fact.tpl','utf8',function(err,data) {
+	if(err) throw err;
+
+	template = data;
+    });
+}
+loadTemplate();
+
+fs.watchFile('fact.tpl',function(curr,prev) {
+    if(curr.mtime != prev.mtime) {
+	loadTemplate();
+	console.log("Reloading template");
+    }
+});
+
 //var template = "{{fact}}";
 
 var http = require('http');
@@ -36,13 +53,16 @@ http.createServer(function (req, res) {
     var selectedArray = (Math.floor(Math.random()*10) < 9) ? facts : bullshit;
 
     // Randomly pick line
-    var selectedFact = selectedArray[Math.floor(Math.random()*selectedArray.length)];
+    var pos = Math.floor(Math.random()*selectedArray.length);
+    var selectedFact = selectedArray[pos];
     
-    // TODO: Create the view
-    //var view = {fact: selectedFact};    
-    //var html = mustache.to_html(template, view);
+    if(selectedArray === bullshit) pos += facts.length;
 
-    res.end(selectedFact); // Write response
+    // TODO: Create the view
+    var view = {"fact":selectedFact,"factNum":pos+1}; 
+    var html = mustache.to_html(template, view);
+
+    res.end(html); // Write response
 }).listen(8080);
 
 function getFactsFromFile(file){
