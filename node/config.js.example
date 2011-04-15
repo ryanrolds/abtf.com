@@ -1,2 +1,3 @@
 exports.domain = "http://beta.amazingbuttruefacts.com";
 exports.tweet_hash = "#abtf";
+exports.port = 8081;
