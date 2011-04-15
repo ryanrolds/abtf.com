@@ -15,10 +15,10 @@
    </div>
 </div>
 <div class="center foot">
+  <iframe src="http://www.facebook.com/plugins/like.php?href={{domain}}&amp;layout=standard&amp;show_faces=false&amp;width=250&amp;action=like&amp;font&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none;overflow:hidden;width:50%;height:35px;float:left;" allowTransparency="true"></iframe>
   <div class="social twitter">
     <a href="http://twitter.com/share" class="twitter-share-button" data-text="{{fact_short}} {{tweet_hash}}" data-url="{{domain}}"  data-count="horizontal">Tweet</a>
   </div>
-  <iframe src="http://www.facebook.com/plugins/like.php?href={{domain}}&amp;layout=standard&amp;show_faces=false&amp;width=250&amp;action=like&amp;font&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none;overflow:hidden;width:50%;height:35px;float:right;" allowTransparency="true"></iframe>
   <div style="clear:both;"/> 
   <a href="mailto:factarian@amazingbuttruefacts.com">Submit/report facts</a>
 </div>
