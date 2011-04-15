@@ -3,13 +3,24 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html">
   <meta name="keywords" content="intersting,amazing,facts,true">
-  <link rel=StyleSheet href="/css/main.css" type="text/css"/>
+  <link rel="stylesheet" href="/css/main.css" type="text/css">
+  <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
   <title>Amazing, but true facts</title>
 </head>
 <body>
-<div class="fact">
-  <h2>Fact #{{factNum}}</h2>
-  {{fact}}
+<div class="center head">Fact #{{factNum}}</div>
+<div class="center fact">
+   <div>
+     <p>{{fact}}</p>
+   </div>
+</div>
+<div class="center foot">
+  <div class="social twitter">
+    <a href="http://twitter.com/share" class="twitter-share-button" data-text="{{fact_short}} {{tweet_hash}}" data-url="{{domain}}"  data-count="horizontal">Tweet</a>
+  </div>
+  <iframe src="http://www.facebook.com/plugins/like.php?href={{domain}}&amp;layout=standard&amp;show_faces=false&amp;width=250&amp;action=like&amp;font&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none;overflow:hidden;width:50%;height:35px;float:right;" allowTransparency="true"></iframe>
+  <div style="clear:both;"/> 
+  <a href="mailto:factarian@amazingbuttruefacts.com">Submit/report facts</a>
 </div>
 <script type="text/javascript">
 var _gaq = _gaq || [];
