@@ -5,7 +5,6 @@ var mustache = require("mustache");
 
 // Will hold our "facts"
 var facts = [];
-var bullshit = [];
 
 // Load facts
 facts = getFactsFromFile("facts.txt");
@@ -50,7 +49,7 @@ http.createServer(function (req, res) {
     var html = mustache.to_html(template, view);
 
     res.end(html); // Write response
-}).listen(8080);
+}).listen(config.port);
 
 function getFactsFromFile(file){
     var incoming = [];
