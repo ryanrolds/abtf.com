@@ -39,3 +39,4 @@
 {"id":39,"show":true,"status":true,"fact":"24 Bitish nuclear bombs have been detonoated on U.S. soil"}
 {"id":40,"show":true,"status":true,"fact":"More Monopoly money is printed each year then real physical currancy world wide"}
 {"id":41,"show":true,"status":true,"fact":"Pope John-Paul II was an honorary Harlem Globetrotter"}
+
