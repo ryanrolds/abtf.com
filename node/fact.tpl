@@ -20,7 +20,7 @@
     <a href="http://twitter.com/share" class="twitter-share-button" data-text="{{fact_short}} {{tweet_hash}}" data-url="{{domain}}"  data-count="horizontal">Tweet</a>
   </div>
   <div style="clear:both;"/> 
-  <a href="mailto:factarian@amazingbuttruefacts.com">Submit/report facts</a>
+  <a href="mailto:factarian@amazingbuttruefacts.com">Send/report facts</a>
 </div>
 <script type="text/javascript">
 var _gaq = _gaq || [];
