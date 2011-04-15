@@ -1,3 +1,4 @@
+var config = require("./config.js");
 var fs = require("fs");
 var lineReader = require("line-reader");
 var mustache = require("mustache");
@@ -45,7 +46,7 @@ http.createServer(function (req, res) {
     var fact = facts[Math.floor(Math.random()*facts.length)];
     
     // TODO: Create the view
-    var view = {"fact":fact.fact,"factNum":fact.id}; 
+    var view = {"factNum":fact.id,"fact":fact.fact,"fact_short":fact.fact.substr(0,130)+((fact.fact.length > 130) ? "...": ""),"domain":config.domain,"tweet_hash":config.tweet_hash}; 
     var html = mustache.to_html(template, view);
 
     res.end(html); // Write response
