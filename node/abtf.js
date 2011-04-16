@@ -1,4 +1,4 @@
-var config = require("./config.js"); // Contains config information like port and file locations
+var config = require("../config.js"); // Contains config information like port and file locations
 var fs = require("fs");
 var mustache = require("mustache"); // Template engine
 
