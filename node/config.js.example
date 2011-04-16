@@ -1,3 +1,5 @@
 exports.domain = "http://beta.amazingbuttruefacts.com";
 exports.tweet_hash = "#abtf";
 exports.port = 8081;
+exports.factFile = "facts.txt";
+exports.templateFile = "fact.tpl"
