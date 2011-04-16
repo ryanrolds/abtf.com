@@ -2,14 +2,26 @@ AmazingButTrueFacts.com
 
 - A site that shows a single amazing but true fact every refresh
 
---- Structure ---
+--- Most of the files ---
+config.js			# Points to files being loaded and has port node script will run on - example of file in docs
+facts.txt			# Contains facts
+run				# Starts the app - for supervise
+doc/				# Contains examples
+doc/crontab			# Example of cron line for supervise
+doc/config.js.example		# Example file for config.js
 htdocs/				# single empty index.html
 htdocs/css 			# css files
-node/ 				# node goes here
+htdocs/css/main.css		# contains css for site
+node/ 				# node scripts and node related files
+node/abtf.js			# node app
+node/fact.tpl			# template for fact page
 node/node_modules 		# custom node modules here
+supervise			# contains files needed for supervise to function
 
 --- 3rd Party node modules (npm installed) ---
 Mustache
 
 --- TODO ---
 Allow linking to specific facts - use m5d?
+Reporting
+Fact submit page
