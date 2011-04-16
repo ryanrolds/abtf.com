@@ -1,17 +1,19 @@
 var config = require("./config.js"); // Contains config information like port and file locations
 var fs = require("fs");
 var mustache = require("mustache"); // Template engine
+
+var http = require('http');
+var httpServer; // Holds the server
+
 var facts = []; // Facts
 var template = ""; // Template
-var http = require('http');
-var httpServer;
 
-var startHttp = function() {
-    if(facts.length == 0 || template.length == 0) return;
+function startHttp() {
+    if(httpServer != undefined || facts.length == 0 || template.length == 0) return;
 
     console.log("Starting HTTP on port "+config.port);
     // Startup server
-    http.createServer(function (req, res) {
+    httpServer = http.createServer(function (req, res) {
 	res.writeHead(200, {'Content-Type': 'text/html'}); // Send headers
 	// Decide if fact or BS
 	var fact = facts[Math.floor(Math.random()*facts.length)];
@@ -21,11 +23,11 @@ var startHttp = function() {
 	var html = mustache.to_html(template, view);
 
 	res.end(html); // Write response
-    }).listen(config.port,function() {
-	startHttp = undefined;
     });
+
+    httpServer.listen(config.port);
 };
-var updateFacts = function() {
+function updateFacts() {
     console.log("Loading facts");
     fs.readFile(config.factFile,"utf8",function(error,data) {
 	if(error) throw error;
@@ -51,21 +53,21 @@ var updateFacts = function() {
 	    facts = newFacts;
 	    console.log(facts.length+" facts found");
 
-	    if(typeof startHttp == "function")
+	    if(httpServer == undefined) // If server has been setup then try to start it
 		startHttp();
 	} else {
 	    console.log("No facts found");
 	}
     });
 };
-var updateTemplate = function() {
+function updateTemplate() {
     console.log("Loading template");
     fs.readFile(config.templateFile,'utf8',function(error,data) {
 	if(error) throw error;
 
 	template = data;
 
-	if(typeof startHttp == "function")
+	if(httpServer == undefined) // If server hasn't been setup
 	    startHttp();
     });
 }
