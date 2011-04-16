@@ -1,5 +1,6 @@
 {"id":1,"show":true,"status":true,"fact":"A restaurant in Stockholm serves garlic cheesecake"}
 {"id":2,"show":true,"status":true,"fact":"On average, the Earth collects 40 tons of space dust each day"}
+{"id":2,"show":true,"status":true,"fact":"On average, the Earth collects 40 tons of space dust each day"}
 {"id":3,"show":true,"status":true,"fact":"Malory Archer is Lucille Bluth"}
 {"id":4,"show":true,"status":true,"fact":"You're never more then 3ft from a spider"}
 {"id":5,"show":true,"status":true,"fact":"Platypuses sweat milk"}
