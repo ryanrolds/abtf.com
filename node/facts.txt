@@ -1,12 +1,12 @@
 {"id":1,"show":true,"status":true,"fact":"A restaurant in Stockholm serves garlic cheesecake"}
 {"id":2,"show":true,"status":true,"fact":"On average, the Earth collects 40 tons of space dust each day"}
-{"id":3,"show":true,"status":true,"fact":"Malory Archer is Lucille Bluth"}
+{"id":3,"show":false,"status":true,"fact":"Malory Archer is Lucille Bluth"}
 {"id":4,"show":true,"status":true,"fact":"You're never more then 3ft from a spider"}
 {"id":5,"show":true,"status":true,"fact":"Platypuses sweat milk"}
 {"id":6,"show":true,"status":true,"fact":"111,111,111 x 111,111,111 = 12345678987654321"}
 {"id":7,"show":true,"status":true,"fact":"The spotted hyena (Crocuta crocuta) has the largest clitoris of any land mammal"}
 {"id":8,"show":true,"status":true,"fact":"Male rhesus monkeys often hang from tree branches by their penises"}
-{"id":9,"show":true,"status":true,"fact":"France hung a pig for the murder of a child"}
+{"id":9,"show":true,"status":true,"fact":"France once hung a pig for the murder of a child"}
 {"id":10,"show":true,"status":true,"fact":"Elephants can't jump"}
 {"id":11,"show":true,"status":true,"fact":"Adolf Hitler was a vegetarian and didn't consume alcohol"}
 {"id":12,"show":true,"status":true,"fact":"Polar bears get most of their water from the chemical reaction that breaks down fat"}
@@ -21,11 +21,11 @@
 {"id":21,"show":true,"status":false,"fact":"Over 9000 years the length of a day gains 69 seconds"}
 {"id":22,"show":false,"status":true,"fact":"There are many colors in the homo rainbow"}
 {"id":23,"show":true,"status":true,"fact":"The Knights Templar played hopscotch in their spare time"}
-{"id":24,"show":true,"status":false,"fact":"Bill Nye has possessed a top secret clearance since his early working on the neutron bomb"}
-{"id":25,"show":true,"status":false,"fact":"David Suzuki became an environmentalist after members of family were killed by the Hiroshima bomb in WWII"}
+{"id":24,"show":true,"status":false,"fact":"Bill Nye has possessed a top secret clearance since his early work on the neutron bomb"}
+{"id":25,"show":true,"status":false,"fact":"David Suzuki became an environmentalist after members of his family were killed by the Hiroshima bomb"}
 {"id":26,"show":true,"status":true,"fact":"After the Civil War, despite being bitter rivals, William Tecumseh Sherman regularly had Confederate General Johnston over for dinner"}
-{"id":27,"show":true,"status":true,"fact":"Atari buried millions of E.T. game cartridges are in the Nevada Desert"}
-{"id":28,"show":true,"status":true,"fact":"Martin Luther King Jr's Nobel Peace Prize features three naked men touching each others sholders"}
+{"id":27,"show":true,"status":true,"fact":"Atari buried millions of E.T. game cartridges in the Nevada Desert"}
+{"id":28,"show":true,"status":true,"fact":"Martin Luther King Jr's Nobel Peace Prize features three naked men touching each others shoulders"}
 {"id":29,"show":true,"status":true,"fact":"Every time you lick a stamp you consume 1/10th of a calorie"}
 {"id":30,"show":true,"status":true,"fact":"Dolphins sleep with one eye open"}
 {"id":31,"show":true,"status":true,"fact":"Ants do not sleep"}
@@ -36,7 +36,7 @@
 {"id":36,"show":true,"status":true,"fact":"Colgate translates into the command 'go hang yourself' in Spanish"}
 {"id":37,"show":true,"status":true,"fact":"Vending machines kill more than ten people a year"}
 {"id":38,"show":true,"status":true,"fact":"A cord of wood can be used to produce 7.5 million toothpicks"}
-{"id":39,"show":true,"status":true,"fact":"24 Bitish nuclear bombs have been detonoated on U.S. soil"}
-{"id":40,"show":true,"status":true,"fact":"More Monopoly money is printed each year then real physical currancy world wide"}
+{"id":39,"show":true,"status":true,"fact":"24 British nuclear bombs have been detonated on U.S. soil"}
+{"id":40,"show":true,"status":true,"fact":"More Monopoly money is printed each year then real physical currency world wide"}
 {"id":41,"show":true,"status":true,"fact":"Pope John-Paul II was an honorary Harlem Globetrotter"}
 
