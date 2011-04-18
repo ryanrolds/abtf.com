@@ -1,6 +1,20 @@
 AmazingButTrueFacts.com
 
-- A site that shows a single amazing but true fact every refresh
+- A site that shows amazing facts
+
+--- Setup ---
+Install Node.js and npm - http://www.amazingbuttruefacts.com/fact?hash=a1d0c6e83f027327d8461063f4ac58a6
+#npm install mustache
+#npm install hashlib
+copy doc/config.js.example to root of repo as config.js and edit to your liking //shouldn't need to change anything
+#./run
+
+Everything should be running - http://<server ip>:<port in config.js>/ should work
+
+To run with supervise on server reboot do the following
+#apt-get install daemontools
+Put the line from doc/crontab in your crontab // This will start the app on reboot
+In the meen time using screen and the "run" script to run.
 
 --- Most of the files ---
 config.js			# Points to files being loaded and has port node script will run on - example of file in docs
@@ -19,9 +33,9 @@ node/node_modules 		# custom node modules here
 supervise			# contains files needed for supervise to function
 
 --- 3rd Party node modules (npm installed) ---
-Mustache
+mustache      // Used for the template
+hashlib       // Used to has fact.id for direct linking
 
 --- TODO ---
-Allow linking to specific facts - use m5d?
 Reporting
 Fact submit page
