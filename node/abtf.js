@@ -13,7 +13,6 @@ var template = ""; // Template
 
 function startHttp() {
     if(httpServer || !facts.length || !template.length) return; // If server already started or facts/template not loaded then return
-    console.log("asdfasdf");
 
     /* The http server */
     httpServer = http.createServer(function (req, res) {
