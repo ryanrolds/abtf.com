@@ -17,8 +17,8 @@ function startHttp() {
     /* The http server */
     httpServer = http.createServer(function (req, res) {
 	var fact; // Holds the fact
-	var prev = []; // Holds id of last x facts show
 	var cookies = {}; // This will hold cookie data
+	var prev = []; // Holds id of last x facts show
 	
 	/* Using a cookie to keep track of last x facts views */
 	if(req.headers.cookie) { // If cookie set
@@ -34,7 +34,7 @@ function startHttp() {
 	    });
 	}
 
-	/* Facts can be directly linked used <domain>/fact?hash=md5(fact.id) */
+	/* Facts can be directly linked to using <domain>/fact?hash=<md5(fact.id)> */
 	if(req.url.length > 1) {
 	    var urlObj = url.parse(req.url,true);
 
