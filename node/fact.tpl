@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html"/>
   <meta name="keywords" content="intersting,amazing,facts,true"/>
-  <link rel="stylesheet" href="/css/main.css" type="text/css"/>
+  <link rel="stylesheet" href="/css/main.css?v=0.2" type="text/css"/>
   <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
   <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
   <title>Amazing, but true facts</title>
