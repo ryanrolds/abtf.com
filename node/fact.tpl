@@ -33,7 +33,7 @@
 </div>
 <div class="center foot">
   <div class="social left">
-    <fb:like href="{{domain}}/fact?hash={{hash}}" layout="button_count" show_faces="true" width="450" font=""></fb:like>
+    <fb:like href="{{domain}}/fact?hash={{hash}}" layout="button_count" show_faces="true" width="100%" font=""></fb:like>
   </div>
   <div class="social right">
     <a href="http://twitter.com/share" class="twitter-share-button" data-text="{{short}} {{tweet_hash}}" data-url="{{domain}}/fact?hash={{hash}}"  data-count="horizontal">Tweet</a>
