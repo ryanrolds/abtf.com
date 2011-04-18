@@ -1,3 +1,4 @@
-*/supervise/lock
-*/supervise/status
+supervise/lock
+supervise/status
 config.js
+*~

@@ -39,4 +39,3 @@
 {"id":39,"show":true,"status":true,"fact":"24 British nuclear bombs have been detonated on U.S. soil"}
 {"id":40,"show":true,"status":true,"fact":"More Monopoly money is printed each year then real physical currency world wide"}
 {"id":41,"show":true,"status":true,"fact":"Pope John-Paul II was an honorary Harlem Globetrotter"}
-

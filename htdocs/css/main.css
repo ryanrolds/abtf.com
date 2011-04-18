@@ -1,9 +1,13 @@
 body{margin:0;padding:13px 0;font-family:georgia,"times new roman",times,serif;font-size:62.5%;color:#333;background-color:#fff;}
 .center{text-align:center;width:40%;margin-left:auto;margin-right:auto;min-width:400px;}
-.head {margin-top:15%;text-align:left;font-size:32px;font-weight:bold;padding-bottom:3px;border-bottom:1px solid #000000;}
+.head {margin-top:15%;text-align:left;font-size:32px;font-weight:bold;padding-bottom:3px;border-bottom:1px solid #000000;position:relative;}
 .fact{font-size:2em;width:50%;height:200px;display:table;}
 .fact > div{_position:absolute;_top:50%;display:table-cell;vertical-align:middle;}
 .fact > div > p{_position:relative; _top:-50%}
 .foot{font-size:1em;border-top:1px solid #000000;padding-top:10px;}
-.social {width:50%;text-align:center;}
-.twitter {float:right;text-align:right;}
+.social{width:50%;text-align:center;height:30px;}
+.left{float:left;text-align:left;}
+.right{float:right;text-align:right;}
+.next{font-size:10px;position:absolute;bottom:10px;right:0;}
+.next span{text-decoration:underline;cursor:hand;}
+.clickable{cursor:pointer;cursor:hand;}
