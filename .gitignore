@@ -1,4 +1,2 @@
-supervise/lock
-supervise/status
-config.js
+node_modules/
 *~
