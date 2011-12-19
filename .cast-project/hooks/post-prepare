@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cp examples/config.js.template config.js
