@@ -1,25 +1,27 @@
 {
     "name": "abtf",
-    "version": "2.0.0-dev",
+    "version": "2.0.3",
     "main": "server.js",
     "maintainers": [
-        {
-            "name": "Ryan Olds",
-            "email": "ryanrolds@gmail.com"
-        }
+      {"name": "Ryan Olds", "email": "ryanrolds@gmail.com"}
     ],
     "description": "Serves facts",
     "dependencies": {
-        "express": "",
-        "mustache": ""
+      "express": "= 2.5.2",
+      "mustache": "= 0.3.1-dev",
+      "hiredis": "= 0.1.13",
+      "redis": "= 0.7.1",
+      "node-uuid": "= 1.3.1"
     },
     "scripts": {
-        
+      "create-bundle": "scripts/bundle.sh",
+      "test": "./node_modules/.bin/mocha test/*.test.js"
     },
     "engines": {
-        "node": ">= 0.6.6"
+      "node": ">= 0.6.6"
     },
     "devDependencies": {
-        "mocha": ""
+      "should": "= 0.4.2",
+      "mocha": "= 0.5.0"
     }
 }

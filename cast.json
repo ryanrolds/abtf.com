@@ -1,0 +1,16 @@
+{
+    "name": "ABTF",
+    "description": "Fact server",
+    "version": "2.0.3",
+    "type": "shell",
+    "entry_file": "run.sh",
+    "data_files": [
+	"logs/"
+    ],
+    "template_files": [
+	"examples/config.js.template"
+    ],
+    "template_variables": {
+        "port": 8000
+    }
+}
