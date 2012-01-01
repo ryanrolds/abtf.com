@@ -36,3 +36,4 @@ require('./lib/routes/root')(app);
 
 // Bind to port
 app.listen(config.port);
+console.log('STARTED: Listening on port %d', config.port);
