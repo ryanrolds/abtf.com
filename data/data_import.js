@@ -1,94 +1,98 @@
 
-var fs = require('fs');
+const fs = require("fs");
+const redis = require("redis");
+const uuid = require("node-uuid");
+const async = require("async");
 
-var redis = require('redis');
-var uuid = require('node-uuid');
-
-var config = require('../config');
-
-var client = redis.createClient();
-client.on('error', function(error) {
-  console.error('Error: ', error);
-  client.quit();
-});
-
-fs.readFile('./facts.txt', 'utf8', function(error, data) {
-  while(data.length > 0) {
-    var eol = data.indexOf("\n");
-    if (eol == -1) {
-      eol = data.length;
-    }
-
-    try {
-      var fact = JSON.parse(data.substring(0, eol));
-    } catch(error) {
-      console.error('Fact Error: ', error);
-    }
-
-    if(fact) {
-      processFact(fact);
-    }
-
-    data = data.substring(eol + 1, data.length);
-  }
-});
-
-client.on('idle', function() {
-  console.log('idle');
-  client.quit();
-});
+const config = require("../config");
 
 var largestNumber = 0;
 
-var processFact = function(fact) {
-  var insert = function(id, fact) {
-    var legacyId = fact.id;
+let client = redis.createClient();
+client.on("error", function(error) {
+  console.error("Error: ", error);
+  client.quit();
+});
 
-    var factHash = {
-      'id': id,
-      'active': (fact.show) ? 1 : 0,
-      'verified': (fact.status) ? 1 : 0,
-      'text': fact.fact,
-      'likes': 0,
-      'reports': 0,
-      'views': 0,
-      'legacyId': legacyId,
-      'number': legacyId
-    };
+async.waterfall([
+  (callback ) => {
+    fs.readFile("./facts.txt", "utf8", callback);
+  },
+  (data, callback) => {
+    console.log(data);
+    async.whilst(() => {
+      console.log(data.length);
+      return data.length > 0;
+    }, (callback) => {
+      var eol = data.indexOf("\n");
+      if (eol == -1) {
+        eol = data.length;
+      }
 
-    if(legacyId > largestNumber) {
-      largestnumber = legacyId;
-    }
-    
-    client.set('legacy:' + legacyId, id, redis.print); // Insert legacy maping item
-    client.hmset('fact:' + id, factHash, redis.print);
-    
-    if(fact.show) {
-      client.sadd('activefacts', id, redis.print);
-    }
-  };
-  
-  client.get('legacy:' + fact.id, function(error, legacyReply) {
-    console.log(error, legacyReply);
+      let line = data.substring(0, eol);
+      try {
+        var fact = JSON.parse(line);
+      } catch(error) {
+        console.error("Fact Error: ", error);
+      }
 
-    if(error) {
-      throw error;
-    }
+      if (!fact) {
+        data = data.substring(eol + 1, data.length);
+        return callback(); 
+      }
 
-    if(!legacyReply) {
-      var id = uuid.v1();
-      insert(id, fact);
-    } else {
-      client.hgetall('fact:' + legacyReply, function(error, hashReply) {
-        if(error) {
-          throw error;
+      processFact(fact, (err, result) => {
+        if (err) {
+          return callback(err);
         }
-        //console.log(error, hashReply);
-
-        insert(legacyReply, fact);
+        
+        data = data.substring(eol + 1, data.length);
+        return callback();
       });
-    }
+    }, callback);
+  }
+], (err) => {
+  if (err) {
+    throw err;
+  }
+
+  client.set("nextnumber", largestNumber + 1, (err) => {
+    client.quit();
   });
+});
+
+function processFact(fact, callback) {
+  var id = uuid.v1();
+  insert(id, fact, callback);
 };
 
-client.set('nextnumber', largestNumber + 1, redis.print);
+function insert(id, fact, callback) {
+  var factHash = {
+    "id": id,
+    "active": (fact.show) ? 1 : 0,
+    "verified": (fact.status) ? 1 : 0,
+    "text": fact.fact,
+    "likes": 0,
+    "reports": 0,
+    "views": 0
+  };
+
+  async.series([
+    (callback) => {
+      client.hmset("fact:" + id, factHash, callback);
+    }, (callback) => {
+      if(fact.show) {
+        return client.sadd("activefacts", id, callback); 
+      }
+
+      callback();
+    }
+  ], (err) => {
+    if (err) {
+      return callback(err);
+    }
+
+    return callback();
+  });
+};
+  
