@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/css/main.css?v=0.2" type="text/css"/>
   <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
   <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+  <script src="/js/app.js"></script>
   <title>Amazing, but true, facts</title>
   <script type="text/javascript">
     function nextFact() { window.location = "/"; }

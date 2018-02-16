@@ -3,10 +3,14 @@ const express = require('express');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 
+
 // Contains config information like port and file locations
 const config = require('./config.js');
 
 const app = express();
+
+app.set('view engine', 'pug');
+app.set('views', './src/views');
 
 // Middleware setup
 app.use(logger('combined'));
@@ -26,7 +30,7 @@ app.use(function(req, res, next) {
 });
 
 // Bind routes
-require('./lib/routes/root')(app);
+require('./src/routes/root')(app);
 
 // Bind to port
 app.listen(config.port);

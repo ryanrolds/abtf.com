@@ -1,15 +1,21 @@
 
 var fs = require('fs');
 var path = require('path');
-
 var hogan = require('hogan.js');
 
 var factorium = require('../models/factorium');
 
-var factTemplate = hogan.compile(fs.readFileSync(path.normalize(__dirname + '/../views/fact.tpl'), 'utf8'));
-
 module.exports = function(app) {
-  app.get('/', function(req, res) {
+  app.get('/', function(req, res, next) {
+    factorium.getRandomFact((err, fact) => {
+      if (err) {
+        return next(err);
+      }
+
+      serveFact(req, res, fact);
+    });
+
+    /*
     var getFact = function() {
       factorium.getRandomFact(function(error, fact) {
         // Check if fact in last 10, if so get another fact
@@ -22,15 +28,45 @@ module.exports = function(app) {
     };
 
     getFact();
+    */
   });
 
-  app.get('/fact/:hash?', function(req, res) { 
-    var uuid = req.param('hash');
-    factorium.getFactById(uuid, function(error, fact) {
-      servPage(req, res, error, fact);
+  app.get('/api/v1/fact/random', function(req, res, next) {
+    factorium.getRandomFact((err, fact) => {
+      if (err) {
+        return next(err);
+      }
+
+      res.status(200).json({
+        'status': 'ok', 
+        'result': fact
+      });
     });
   });
+  
+  app.get('/fact/:hash', function(req, res, next) { 
+    var uuid = req.param('hash');
+    factorium.getFactById(uuid, function(err, fact) {
+      if (err) {
+        return next(err);
+      }
+
+      serveFact(req, res, fact);
+    });
+  });
+
 };
+
+function serveFact(req, res, fact) {
+  console.log(fact);
+  res.render('index', {
+    title: 'Amazing, but true, facts',
+    protocol: req.protocol,
+    domain: req.hostname,
+    fact: fact,
+    factJSON: JSON.stringify(fact)
+  });
+}
 
 function updateLastTen(req, res, id) {
   var lastten = req.lastten;

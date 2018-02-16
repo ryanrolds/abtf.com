@@ -19,6 +19,9 @@
     "hogan.js": "=3.0.2",
     "morgan": "^1.9.0",
     "node-uuid": "=1.4.8",
+    "pug": "^2.0.0-rc.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "redis": "=2.8.0"
   },
   "scripts": {
@@ -26,10 +29,18 @@
     "test": "./node_modules/.bin/mocha test/*.test.js"
   },
   "engines": {
-    "node": ">= 0.6.6"
+    "node": "^= 6.12.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.17.0",
+    "eslint-plugin-react": "^7.6.1",
+    "mocha": "=5.0.0",
     "should": "=13.2.1",
-    "mocha": "=5.0.0"
+    "webpack": "^3.11.0"
   }
 }

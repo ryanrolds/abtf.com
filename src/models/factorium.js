@@ -23,7 +23,20 @@ module.exports = {
     });
   },
   getFactById: function(id, callback) {
-      this.getFactByKey(factHashPrefix + id, callback);
+    this.getFactByKey(factHashPrefix + id, (err, fact) => {
+      if (err) {
+        return callback(err);
+      }
+  
+      if (!fact) {
+        return callback(new Error('Invalid fact id:' + id));
+      }
+
+      console.log(fact);
+
+      fact.short = fact.text.substr(0, 130) + ((fact.text.length > 130) ? '...' : '');
+      return callback(null, fact);
+    });
   },
   incrementFactViews: function(id, callback) {
     this.incrementFactField(factHashPrefix + id, 'views', 1, callback);

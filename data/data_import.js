@@ -64,7 +64,7 @@ async.waterfall([
 function processFact(fact, callback) {
   var id = uuid.v1();
   insert(id, fact, callback);
-};
+}
 
 function insert(id, fact, callback) {
   var factHash = {
@@ -94,5 +94,5 @@ function insert(id, fact, callback) {
 
     return callback();
   });
-};
+}
   
