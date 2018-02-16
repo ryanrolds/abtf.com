@@ -20,7 +20,7 @@ module.exports = function(app) {
   });
 
   app.get('/fact/:hash', function(req, res, next) { 
-    var uuid = req.param('hash');
+    let uuid = req.param('hash');
     factorium.getFactById(uuid, function(err, fact) {
       if (err) {
         return next(err);
@@ -47,10 +47,48 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/api/v1/fact/:hash');
-  app.get('/api/v1/fact/:hash/like');
-  app.get('/api/v1/fact/:hash/report');
-  app.get('/api/v1/fact/:hash/share');
+  app.get('/api/v1/fact/:hash', (req, res, next) => {
+    let uuid = req.param('hash');
+    factorium.getFactById(uuid, function(err, fact) {
+      if (err) {
+        return next(err);
+      }
+
+      res.status(200).json({
+        'status': 'ok', 
+        'result': fact
+      });
+      incrementViews(fact.id);
+    });
+  });
+
+  app.get('/api/v1/fact/:hash/like', (req, res, next) => {
+    let uuid = req.param('hash');
+    factorium.incrementFactLikes(uuid, (err, result) => {
+      if (err) {
+        return next(err);
+      }
+
+      res.status(200).json({
+        'status': 'ok',
+        'result': result,
+      });
+    });
+  });
+  
+  app.get('/api/v1/fact/:hash/report', (req, res, next) => {
+    let uuid = req.param('hash');
+    factorium.incrementFactReports(uuid, (err, result) => {
+      if (err) {
+        return next(err);
+      }
+
+      res.status(200).json({
+        'status': 'ok',
+        'result': result,
+      });
+    });
+  });
 };
 
 function updateLastTen(req, id) {
