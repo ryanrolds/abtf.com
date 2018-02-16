@@ -9,7 +9,7 @@ const config = require('./config.js');
 const app = express();
 
 app.set('view engine', 'pug');
-app.set('views', './src/views');
+app.set('views', './views');
 
 // Middleware setup
 app.use(logger('combined'));
@@ -22,7 +22,7 @@ app.use(session({
 }));
 
 // Bind routes
-require('./src/routes/root')(app);
+require('./src/routes.js')(app);
 
 // Bind to port
 app.listen(config.port);

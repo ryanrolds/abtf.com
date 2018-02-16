@@ -3,7 +3,7 @@ var fs = require('fs');
 var path = require('path');
 var hogan = require('hogan.js');
 
-var factorium = require('../models/factorium');
+var factorium = require('./factorium');
 
 module.exports = function(app) {
   app.get('/', function(req, res, next) {
