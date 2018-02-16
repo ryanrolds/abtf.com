@@ -1,5 +1,6 @@
 
 var redis = require('redis');
+const lodash = require('lodash');
 
 var client = redis.createClient();
 client.on('error', function(err) {
@@ -11,15 +12,13 @@ var activeSetKey = 'activefacts';
 var factHashPrefix = 'fact:';
 
 module.exports = {
-  getRandomFact: function(callback) {
-    var caller = this;
-    this.getRandomFactId(function(err, id) {
-      console.log(err, id);
+  getRandomFact: function(lastTen, callback) {
+    this.getRandomFactId(lastTen, (err, id) => {
       if(err) {
         return callback(err);
       }
 
-      caller.getFactById(id, callback);
+      this.getFactById(id, callback);
     });
   },
   getFactById: function(id, callback) {
@@ -31,8 +30,6 @@ module.exports = {
       if (!fact) {
         return callback(new Error('Invalid fact id:' + id));
       }
-
-      console.log(fact);
 
       fact.short = fact.text.substr(0, 130) + ((fact.text.length > 130) ? '...' : '');
       return callback(null, fact);
@@ -53,8 +50,16 @@ module.exports = {
   getFactByKey: function(key, callback) {
     client.hgetall(key, callback);
   },
-  getRandomFactId: function(callback) {
-    client.srandmember(activeSetKey, callback);
+  getRandomFactId: function(lastTen, callback) {
+    client.srandmember(activeSetKey, 11, (err, ids) => {
+      if (err) {
+        return callback(err);
+      }
+
+      ids = lodash.pullAll(ids, lastTen);
+
+      return callback(null, ids[0]);
+    });
   },
   close: function() {
     client.quit();

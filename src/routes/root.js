@@ -7,43 +7,18 @@ var factorium = require('../models/factorium');
 
 module.exports = function(app) {
   app.get('/', function(req, res, next) {
-    factorium.getRandomFact((err, fact) => {
+    let lastTen = req.session.last_ten || [];
+    factorium.getRandomFact(lastTen, (err, fact) => {
       if (err) {
         return next(err);
       }
 
+      updateLastTen(req, fact.id);
       serveFact(req, res, fact);
-    });
-
-    /*
-    var getFact = function() {
-      factorium.getRandomFact(function(error, fact) {
-        // Check if fact in last 10, if so get another fact
-        if(!error && req.lastten.indexOf(fact.id) !== -1) {
-          return getFact();
-        }
-
-        servPage(req, res, error, fact);
-      });
-    };
-
-    getFact();
-    */
-  });
-
-  app.get('/api/v1/fact/random', function(req, res, next) {
-    factorium.getRandomFact((err, fact) => {
-      if (err) {
-        return next(err);
-      }
-
-      res.status(200).json({
-        'status': 'ok', 
-        'result': fact
-      });
+      incrementViews(fact.id);
     });
   });
-  
+
   app.get('/fact/:hash', function(req, res, next) { 
     var uuid = req.param('hash');
     factorium.getFactById(uuid, function(err, fact) {
@@ -52,13 +27,45 @@ module.exports = function(app) {
       }
 
       serveFact(req, res, fact);
+      incrementViews(fact.id);
     });
   });
 
+  app.get('/api/v1/fact/random', function(req, res, next) {
+    let lastTen = req.session.last_ten || [];
+    factorium.getRandomFact(lastTen, (err, fact) => {
+      if (err) {
+        return next(err);
+      }
+
+      updateLastTen(req, fact.id);
+      res.status(200).json({
+        'status': 'ok', 
+        'result': fact
+      });
+      incrementViews(fact.id);
+    });
+  });
+
+  app.get('/api/v1/fact/:hash');
+  app.get('/api/v1/fact/:hash/like');
+  app.get('/api/v1/fact/:hash/report');
+  app.get('/api/v1/fact/:hash/share');
 };
 
+function updateLastTen(req, id) {
+  if (!req.session.last_ten) {
+    req.session.last_ten = [];
+  }
+
+  // Update last ten viewed fact
+  req.session.last_ten.push(id);
+  if (req.session.last_ten.length > 10) {
+    req.session.last_ten.splice(0, req.session.last_ten.length - 10);
+  }
+}
+
 function serveFact(req, res, fact) {
-  console.log(fact);
   res.render('index', {
     title: 'Amazing, but true, facts',
     protocol: req.protocol,
@@ -66,16 +73,6 @@ function serveFact(req, res, fact) {
     fact: fact,
     factJSON: JSON.stringify(fact)
   });
-}
-
-function updateLastTen(req, res, id) {
-  var lastten = req.lastten;
-
-  if(lastten.push(id) > 10) {
-    lastten.shift();
-  }
-
-  res.cookie('last', JSON.stringify(lastten));
 }
 
 function buildView(req, fact) {
@@ -97,11 +94,7 @@ function servPage(req, res, error, fact) {
     return res.end(error.message ,500);
   }
 
-  updateLastTen(req, res, fact.id);
-
   res.end(factTemplate.render(buildView(req, fact)));
-
-  incrementViews(fact.id);
 }
 
 function incrementViews(id) {

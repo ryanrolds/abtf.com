@@ -1,8 +1,7 @@
 
 const express = require('express');
 const logger = require('morgan');
-const cookieParser = require('cookie-parser');
-
+const session = require('express-session');
 
 // Contains config information like port and file locations
 const config = require('./config.js');
@@ -15,19 +14,12 @@ app.set('views', './src/views');
 // Middleware setup
 app.use(logger('combined'));
 app.use(express.static(__dirname + '/public', {'maxAge': 31557600000}));
-app.use(cookieParser());
-app.use(function(req, res, next) {
-  let lastten = (req.cookies && req.cookies.last) ? req.cookies.last : [];
-
-  try {
-    lastten = JSON.parse(lastten);
-  } catch(e) {
-    lastten = [];
-  }
-
-  req.lastten = (Array.isArray(lastten)) ? lastten : [];
-  next();
-});
+app.use(session({
+  secret: 'cat keyboard',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {secure: false}
+}));
 
 // Bind routes
 require('./src/routes/root')(app);
