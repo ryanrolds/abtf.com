@@ -3,7 +3,7 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    app: './public/lib/app.js'
+    app: './client/app.js'
   },
   output: {
     path: path.resolve(__dirname, 'public/js/'),
@@ -17,13 +17,23 @@ module.exports = {
   ],
 	module: {
 		rules: [
+      {
+        test: /\.scss$/,
+        use: [{
+          loader: "style-loader",
+        }, {
+          loader: "css-loader",
+        }, {
+          loader: "sass-loader"
+        }]
+      },
 			{
 				test: /\.js$/,
 				exclude: /(node_modules|bower_components|public)/,
 				use: {
 					loader: 'babel-loader',
 					options: {
-						presets: ['@babel/preset-env', 'react']
+						presets: ['env', 'react']
 					}
 				}
 			}

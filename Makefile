@@ -14,6 +14,9 @@ start:
 install: 
 	npm isntall
 
+watch:
+	./node_modules/.bin/webpack --watch
+
 webpack:
 	./node_modules/.bin/webpack
 

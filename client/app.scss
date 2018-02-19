@@ -1,0 +1,61 @@
+
+@media all and (min-width: 737px) {
+  body {
+    margin: 0px;
+    display: table;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  #root {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  #app {
+    margin-left: auto;
+    margin-right: auto;
+    width: 30rem;
+  }
+
+}
+
+@media all and (min-width: 480px) and (max-width: 736px) {
+  #root {
+    vertical-align: top; 
+  }
+
+  #app {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+@media all and (min-width: 0px) and (max-width: 479px) {
+  #root {
+
+  }
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3 {
+  margin: 0px;
+}
+
+#app {
+  #header {
+    border-bottom: 1px solid; 
+  }
+
+  #footer {
+    border-top: 1px solid;
+  }
+
+  #next {
+    float: right;
+  }
+}

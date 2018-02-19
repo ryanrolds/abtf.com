@@ -1,6 +1,8 @@
+doctype strict
 html
   head
     title= title
+    meta(name="viewport" content="initial-scale=1, maximum-scale=1")
     meta(http-equiv="Content-Type" content="text/html")
     meta(name="keywords" content="intersting,amazing,facts,true")
     meta(property="og:title" content="Fact: " + fact.short)
@@ -9,9 +11,9 @@ html
     meta(property="og:image" content="")
     meta(property="og:site_name" content="Amazing, but true, facts")
     meta(property="fb:admins" content="615705590")
+    link(href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet")
     script(type="text/javascript").
       var fact = !{factJSON};
-
   body
     div#root
     script(src="/js/app.js")
