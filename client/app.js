@@ -74,6 +74,7 @@ class Application extends React.Component {
       <div id="footer"> 
         <div id="next" onClick={this.nextFact.bind(this)}>Next</div>
         <div id="prev" className={this.state.history.length < 2 ? 'inactive' : ''} onClick={this.prevFact.bind(this)}>Prev</div>
+        <div className="clear"></div>
       </div>
     </div>; 
   }

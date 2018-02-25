@@ -5,36 +5,53 @@
   width: 100%;
 
   .header {
-    display: table-row;
+    display: table-header-group;
   }
 
   .footer {
-    display: table-row;
+    display: table-footer-group;
   }
 
   .text {
-    display: table-cell;
+    display: table-row;
     height: 100%;
     width: 100%;
     text-align: center;
     vertical-align: middle;
-    margin-left: 2rem;
-    margin-right: 2rem;
+
+    h1 {
+      display: table-cell;
+      vertical-align: middle;
+      padding: 1rem;
+    }
+  }
+
+  %detail {
+    font-weight: bold;
+    color: hsla(0, 0%, 0%, 0.6);
   }
 
   .rank {
+    @extend %detail;
+    margin: 0.5rem;
     float: left;
   }
 
   .views {
+    @extend %detail;
+    margin: 0.5rem;
     float: right;
   }
 
   .like {
+    @extend %detail;
+    margin: 0.5rem;
     float: left;
   }
 
   .share {
+    @extend %detail;
+    margin: 0.5rem;
     float: right;
   }
 }
