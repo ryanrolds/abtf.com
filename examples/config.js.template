@@ -1,5 +1,0 @@
-
-module.exports = {
-  'port': {{user_defined.port}},
-  'session_secret': 'blahblahasdfasdf'
-};

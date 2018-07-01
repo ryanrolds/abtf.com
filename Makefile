@@ -11,8 +11,10 @@ lint:
 start: 
 	node server.js start
 
-install: 
-	npm isntall
+setup: 
+	npm install
+	npm rebuild node-sass --force
+	make webpack
 
 watch:
 	./node_modules/.bin/webpack --watch

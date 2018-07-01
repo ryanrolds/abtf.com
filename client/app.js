@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Fact from './fact.js';
-import './app.scss';
+import Fact from "./fact.js";
+import "./app.scss";
 
 class Application extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class Application extends React.Component {
       return {
         fact: prevState.history[prevState.index],
         index: prevState.index
-      }
+      };
     }); 
   }
 
@@ -29,7 +29,7 @@ class Application extends React.Component {
     this.getNewFact().then((fact) => {
       this.setState((prevState, props) => {
         prevState.history.push(fact.id);
-        prevState.index++
+        prevState.index++;
         return {
           fact: fact,
           history: prevState.history, 
@@ -46,7 +46,7 @@ class Application extends React.Component {
   }
 
   getNewFact() {
-    return fetch("/api/v1/fact/random").then(this.processBody)
+    return fetch("/api/v1/fact/random").then(this.processBody);
   }
 
   processBody(res) {
@@ -73,7 +73,7 @@ class Application extends React.Component {
       <Fact fact={this.state.fact}/>
       <div id="footer"> 
         <div id="next" onClick={this.nextFact.bind(this)}>Next</div>
-        <div id="prev" className={this.state.history.length < 2 ? 'inactive' : ''} onClick={this.prevFact.bind(this)}>Prev</div>
+        <div id="prev" className={this.state.history.length < 2 ? "inactive" : ""} onClick={this.prevFact.bind(this)}>Prev</div>
         <div className="clear"></div>
       </div>
     </div>; 

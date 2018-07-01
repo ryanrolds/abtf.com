@@ -1,15 +1,19 @@
 
-var redis = require('redis');
-const lodash = require('lodash');
+const lodash = require("lodash");
+const config = require("./config");
+const redis = require("redis");
 
-var client = redis.createClient();
-client.on('error', function(err) {
-  console.error('Error: ', err);
-  client.quit();
+const client = redis.createClient({
+  "host": config.redis_host,
+  "port": config.redis_port
 });
 
-var activeSetKey = 'activefacts';
-var factHashPrefix = 'fact:';
+client.on("error", function(err) {
+  console.error("Error: ", err);
+});
+
+var activeSetKey = "activefacts";
+var factHashPrefix = "fact:";
 
 module.exports = {
   getRandomFact: function(lastTen, callback) {
@@ -28,21 +32,21 @@ module.exports = {
       }
   
       if (!fact) {
-        return callback(new Error('Invalid fact id:' + id));
+        return callback(new Error("Invalid fact id:" + id));
       }
 
-      fact.short = fact.text.substr(0, 130) + ((fact.text.length > 130) ? '...' : '');
+      fact.short = fact.text.substr(0, 130) + ((fact.text.length > 130) ? "..." : "");
       return callback(null, fact);
     });
   },
   incrementFactViews: function(id, callback) {
-    this.incrementFactField(factHashPrefix + id, 'views', 1, callback);
+    this.incrementFactField(factHashPrefix + id, "views", 1, callback);
   },
   incrementFactReports: function(id, callback) {
-    this.incrementFactField(factHashPrefix + id, 'reports', 1, callback);
+    this.incrementFactField(factHashPrefix + id, "reports", 1, callback);
   },
   incrementFactLikes: function(id, callback) {
-    this.incrementFactField(factHashPrefix + id, 'likes', 1, callback);
+    this.incrementFactField(factHashPrefix + id, "likes", 1, callback);
   },
   incrementFactField: function(key, field, by, callback) {
     client.hincrby(key, field, by, callback);

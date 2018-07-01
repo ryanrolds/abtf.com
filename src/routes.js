@@ -1,12 +1,12 @@
 
-var fs = require('fs');
-var path = require('path');
-var hogan = require('hogan.js');
+var fs = require("fs");
+var path = require("path");
+var hogan = require("hogan.js");
 
-var factorium = require('./factorium');
+var factorium = require("./factorium");
 
 module.exports = function(app) {
-  app.get('/', function(req, res, next) {
+  app.get("/", function(req, res, next) {
     let lastTen = req.session.last_ten || [];
     factorium.getRandomFact(lastTen, (err, fact) => {
       if (err) {
@@ -19,8 +19,8 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/fact/:hash', function(req, res, next) { 
-    let uuid = req.param('hash');
+  app.get("/fact/:hash", function(req, res, next) { 
+    let uuid = req.param("hash");
     factorium.getFactById(uuid, function(err, fact) {
       if (err) {
         return next(err);
@@ -31,7 +31,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/api/v1/fact/random', function(req, res, next) {
+  app.get("/api/v1/fact/random", function(req, res, next) {
     let lastTen = req.session.last_ten || [];
     factorium.getRandomFact(lastTen, (err, fact) => {
       if (err) {
@@ -40,52 +40,52 @@ module.exports = function(app) {
 
       updateLastTen(req, fact.id);
       res.status(200).json({
-        'status': 'ok', 
-        'result': fact
+        "status": "ok", 
+        "result": fact
       });
       incrementViews(fact.id);
     });
   });
 
-  app.get('/api/v1/fact/:hash', (req, res, next) => {
-    let uuid = req.param('hash');
+  app.get("/api/v1/fact/:hash", (req, res, next) => {
+    let uuid = req.param("hash");
     factorium.getFactById(uuid, function(err, fact) {
       if (err) {
         return next(err);
       }
 
       res.status(200).json({
-        'status': 'ok', 
-        'result': fact
+        "status": "ok", 
+        "result": fact
       });
       incrementViews(fact.id);
     });
   });
 
-  app.get('/api/v1/fact/:hash/like', (req, res, next) => {
-    let uuid = req.param('hash');
+  app.get("/api/v1/fact/:hash/like", (req, res, next) => {
+    let uuid = req.param("hash");
     factorium.incrementFactLikes(uuid, (err, result) => {
       if (err) {
         return next(err);
       }
 
       res.status(200).json({
-        'status': 'ok',
-        'result': result,
+        "status": "ok",
+        "result": result,
       });
     });
   });
   
-  app.get('/api/v1/fact/:hash/report', (req, res, next) => {
-    let uuid = req.param('hash');
+  app.get("/api/v1/fact/:hash/report", (req, res, next) => {
+    let uuid = req.param("hash");
     factorium.incrementFactReports(uuid, (err, result) => {
       if (err) {
         return next(err);
       }
 
       res.status(200).json({
-        'status': 'ok',
-        'result': result,
+        "status": "ok",
+        "result": result,
       });
     });
   });
@@ -104,8 +104,8 @@ function updateLastTen(req, id) {
 }
 
 function serveFact(req, res, fact) {
-  res.render('index', {
-    title: 'Amazing, but true, facts',
+  res.render("index", {
+    title: "Amazing, but true, facts",
     protocol: req.protocol,
     domain: req.hostname,
     fact: fact,
@@ -116,14 +116,14 @@ function serveFact(req, res, fact) {
 function buildView(req, fact) {
   var domain = req.headers.host;
   var secure = req.connection.encrypted;
-  fact.short = fact.text.substr(0, 130) + (fact.text.length > 130) ? '...' : '';
+  fact.short = fact.text.substr(0, 130) + (fact.text.length > 130) ? "..." : "";
 
   return {
-    'fact': fact,
-    'domain': domain,
-    'encdomain': encodeURIComponent(domain),
-    'tweet_hash': '#abtf',
-    'protocol': (secure) ? 'https' : 'http'
+    "fact": fact,
+    "domain": domain,
+    "encdomain": encodeURIComponent(domain),
+    "tweet_hash": "#abtf",
+    "protocol": (secure) ? "https" : "http"
   };
 }
 

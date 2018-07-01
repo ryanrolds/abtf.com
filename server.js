@@ -1,10 +1,11 @@
 
+const http = require('http');
 const express = require('express');
 const logger = require('morgan');
 const session = require('express-session');
 
 // Contains config information like port and file locations
-const config = require('./config.js');
+const config = require('./src/config.js');
 
 const app = express();
 
@@ -25,5 +26,24 @@ app.use(session({
 require('./src/routes.js')(app);
 
 // Bind to port
-app.listen(config.port);
-console.log('STARTED: Listening on port %d', config.port);
+const server = http.createServer(app);
+server.listen(config.port, () => {
+  console.log('STARTED: Listening on port %d', config.port);
+});
+
+// Handle signals
+process.on('SIGINT', shutdown);
+process.on('SIGTERM', shutdown);
+
+function shutdown() {
+  console.log('Starting shutdown');
+  server.close(() => {
+    console.log('Shutdown complete');
+    process.exit(0);
+  });
+
+  setTimeout(() => {
+    console.log('Force shutdown');
+    process.exit(1);
+  }, 15000);
+}
