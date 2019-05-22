@@ -10,7 +10,7 @@
   ],
   "description": "Serves facts",
   "dependencies": {
-    "async": "^2.6.0",
+    "async": "^3.0.0",
     "cookie-parser": "^1.4.3",
     "eslint": "^5.0.0",
     "eslint-config-google": "^0.9.1",
